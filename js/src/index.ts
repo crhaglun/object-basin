@@ -102,16 +102,11 @@ export class Basin<T> {
 		}
 
 		if (!cursor.jsonPath!.startsWith('$')) {
-		 	cursor.jsonPath = '$.' + cursor.jsonPath
+			cursor.jsonPath = '$.' + cursor.jsonPath
 		}
 
 		const pathArray = JSONPath.toPathArray(cursor.jsonPath!)
-		for (const segment of pathArray) {
-			if (segment !== '$') {
-				this._keys.set(label, segment)
-				break
-			}
-		}
+		this._keys.set(label, pathArray[1])
 	}
 
 	/**
